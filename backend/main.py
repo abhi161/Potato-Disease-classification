@@ -9,8 +9,20 @@ import tensorflow as tf
 import streamlit as st
 import base64
 import io
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+origins = ['*']
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL = tf.keras.models.load_model("/home/a003k/Downloads/MLineuron/PROJECTS/Potato/models/potatoes.h5")
 CLASS_NAMES = ["Early Blight","Late Blight", "Healthy"]
@@ -33,7 +45,7 @@ CLASS_NAMES = ["Early Blight","Late Blight", "Healthy"]
 #     predicted_class = CLASS_NAMES[np.argmax(predictions[0])]
 #     confidence = np.max(predictions[0])
     
-#     return {
+#     return {import
 #         'class' : predicted_class,
 #         'confidence' : float(confidence)
 #     }
