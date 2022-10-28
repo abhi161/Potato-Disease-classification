@@ -15,7 +15,7 @@ if st.button("predict"):
 
     if image_file is not None:
 
-        api ="http://0.0.0.0:8000/predict"
+        api ="http://18.212.31.155/predict"
         m = MultipartEncoder(fields={'file':('filename', image_file ,'image/jpg')})
 
         response = requests.post(api, data=m, headers={'Content-Type':m.content_type})
